@@ -1,0 +1,36 @@
+html {
+    font-size: 14px;
+  
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    background-image: url('../images/background.jpg');
+}
+
+img {
+    width: 50%;
+    height: auto;
+}
+
+.button {
+    align-content:center;
+    text-align: center;
+    align-items:inherit;
+}
+.icon
+{
+    width: 50px;
+    height:auto;
+}

@@ -1,0 +1,42 @@
+﻿@model IEnumerable<car_rental_asp.net.Models.Car>  
+  
+@{  
+    ViewData["Title"] = "Home Page";  
+}  
+  
+<h4 class="text-center text-uppercase">Our cars</h4>  
+  
+<p>  
+    <a asp-action="Post" class="btn btn-sm btn-primary rounded-0 text-uppercase"><i class="fas fa-plus-circle"></i> Add New</a>  
+</p>  
+<table class="table table-bordered">  
+    <thead>  
+        <tr>  
+            <th>@Html.DisplayNameFor(model => model.Brand)</th>  
+            <th>@Html.DisplayNameFor(model => model.Model)</th>  
+            <th>@Html.DisplayNameFor(model => model.Specification)</th>  
+            <th>@Html.DisplayNameFor(model => model.YearOfProduction)</th>  
+            <th>@Html.DisplayNameFor(model => model.Amount)</th>  
+            <th>@Html.DisplayNameFor(model => model.Description)</th>  
+        </tr>  
+    </thead>  
+    <tbody>  
+        @foreach (var car in Model)  
+        {  
+            <tr>  
+                <td>  
+                    <img src="~/images/@car.Image"   
+                         class="rounded-circle"   
+                         height="40" width="40"   
+                         asp-append-version="true" />  
+                    @car.Brand
+                </td>  
+                <td>@car.Model</td>  
+                <td>@car.Specification</td>  
+                <td>@car.Description</td>  
+                <td>@car.Amount</td>  
+               
+            </tr>  
+        }  
+    </tbody>  
+</table>   
