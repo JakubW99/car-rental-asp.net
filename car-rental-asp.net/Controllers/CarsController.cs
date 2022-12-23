@@ -3,15 +3,16 @@ using car_rental_asp.net.Models;
 using car_rental_asp.net.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using static car_rental_asp.net.Models.Car;
 
 namespace car_rental_asp.net.Controllers
 {
-    public class ListController : Controller
+    public class CarsController : Controller
     {
 
         private readonly ApplicationDbContext dbContext;
         private readonly IWebHostEnvironment webHostEnvironment;
-        public ListController(ApplicationDbContext context, IWebHostEnvironment hostEnvironment)
+        public CarsController(ApplicationDbContext context, IWebHostEnvironment hostEnvironment)
         {
             dbContext = context;
             webHostEnvironment = hostEnvironment;
@@ -32,26 +33,25 @@ namespace car_rental_asp.net.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Post(CarViewModel model)
         {
-            Car car = new Car();
+            if (ModelState.IsValid)
+            {
+                Car car = new Car();
                 string uniqueFileName = UploadedFile(model);
+                car.Brand = model.Brand;
+                car.Model = model.CarModel;
+                car.Id = model.Id;
+                car.Image = uniqueFileName;
+                car.YearOfProduction = model.YearOfProduction;
+                car.Amount = model.Amount;
+                car.Specification = model.Specification;
+                car.Description = model.Description;
+                dbContext.Add(car);
+                await dbContext.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View();
 
-
-            car.Brand = model.Brand;
-            car.Model = model.CarModel;
-            car.Id = model.Id;
-            car.Image = uniqueFileName;
-            car.YearOfProduction = model.YearOfProduction;
-            car.Amount = model.Amount;
-               car.Specification = model.Specification;
-            car.Description = model.Description;
-
-          
-            dbContext.Add(car);
-            await dbContext.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-
-
-        }
+    }
 
     private string UploadedFile(CarViewModel model)
     {

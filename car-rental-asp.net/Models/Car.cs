@@ -29,7 +29,8 @@ namespace car_rental_asp.net.Models
         public string Description { get; set; }
         [Required(ErrorMessage = "Please upload image")]
         public string Image { get; set; }
-
+     
+    
         public Car()
         {
 

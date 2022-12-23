@@ -27,5 +27,7 @@ namespace car_rental_asp.net.ViewModels
         public string Description { get; set; }
         [Required(ErrorMessage = "Please upload image")]
         public IFormFile Image { get; set; }
+   
+   
     }
 }
