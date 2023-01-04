@@ -28,7 +28,7 @@ namespace car_rental_asp.net.Controllers
         {
             return View();
         }
-
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Post(CarViewModel model)

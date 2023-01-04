@@ -1,4 +1,5 @@
 ﻿using car_rental_asp.net.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,12 +24,14 @@ namespace car_rental_asp.net.Controllers
         {
             return _adminService.FindBy(id);
         }
+        [Authorize]
         [HttpPost]
         public ActionResult Post([FromBody] Car car)
         {
             _adminService.Save(car);
                 return Created("", car);
         }
+        
         [HttpPut("{id}")]
         public ActionResult Put(int id, [FromBody] Car car)
         {
@@ -42,8 +45,8 @@ namespace car_rental_asp.net.Controllers
                 return NoContent();
             }
         }
-
-        // DELETE: api/Books/5
+        [Authorize]
+        // DELETE: api/Car/5
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

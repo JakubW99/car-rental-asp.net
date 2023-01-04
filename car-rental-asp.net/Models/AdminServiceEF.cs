@@ -77,9 +77,9 @@ namespace car_rental_asp.net.Models
             return id is null ? null : _context.Cars.Find(id);
         }
 
-        public ICollection<Car> FindAll()
+        public DbSet<Car> FindAll()
         {
-            throw new NotImplementedException();
+            return _context.Cars;
         }
     }
 }

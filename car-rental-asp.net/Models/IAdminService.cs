@@ -1,4 +1,7 @@
-﻿namespace car_rental_asp.net.Models
+﻿using car_rental_asp.net.ViewModels;
+using Microsoft.EntityFrameworkCore;
+
+namespace car_rental_asp.net.Models
 {
     public interface IAdminService
     {
@@ -8,7 +11,7 @@
 
         public Car? FindBy(int? id);
         public bool ChangeStatus(Car car);
-        public ICollection<Car> FindAll();
+        public DbSet<Car> FindAll();
 
 
     }

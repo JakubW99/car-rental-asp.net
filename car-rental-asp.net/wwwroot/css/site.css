@@ -16,7 +16,7 @@ html {
 
 body {
     margin-bottom: 60px;
-    background-image: url('../images/background.jpg');
+    background: linear-gradient(to right, #868f96 0%, #596164 100%);
 }
 
 img {
@@ -33,4 +33,12 @@ img {
 {
     width: 50px;
     height:auto;
+}
+.table-borderless > tbody > tr > td,
+.table-borderless > tbody > tr > th,
+.table-borderless > tfoot > tr > td,
+.table-borderless > tfoot > tr > th,
+.table-borderless > thead > tr > td,
+.table-borderless > thead > tr > th {
+    border: none;
 }

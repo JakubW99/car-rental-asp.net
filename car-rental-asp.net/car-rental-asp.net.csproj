@@ -9,7 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\images\HomeImage.png" />
+    <Content Remove="wwwroot\images\assets\HomeImage.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\images\assets\HomeImage.png" />
   </ItemGroup>
 
   <ItemGroup>
