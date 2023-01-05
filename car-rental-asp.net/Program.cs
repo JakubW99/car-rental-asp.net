@@ -20,7 +20,7 @@ namespace car_rental_asp.net
           
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-            
+            builder.Services.AddHttpContextAccessor();
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();

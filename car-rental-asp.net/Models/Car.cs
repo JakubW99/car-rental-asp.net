@@ -10,24 +10,26 @@ namespace car_rental_asp.net.Models
         [Key]
         public int Id { get; set; }
         [Required(ErrorMessage = "Please enter car brand")]
-        [Display(Name = "Car brand")]
+        [Display(Name = "Brand")]
         [StringLength(30)]
         public string Brand { get; set; }
         [Required(ErrorMessage = "Please enter car model name")]
-        [Display(Name = "car model")]
+        [Display(Name = "Model")]
         [StringLength(30)]
         public string Model { get; set; }
         [Required(ErrorMessage = "Please enter car specification")]
-        [Display(Name = "car specification")]
+        [Display(Name = "Specification")]
         [StringLength(50)]
         public string Specification { get; set; }
         [Required(ErrorMessage = "Please enter amount")]
         public decimal Amount { get; set; }
         [Required(ErrorMessage = "Please enter year of car production")]
+        [Display(Name = "Year")]
         public DateTime YearOfProduction { get; set; }
         [Required(ErrorMessage = "Please enter description")]
         public string Description { get; set; }
         [Required(ErrorMessage = "Please upload image")]
+        [Display(Name = "")]
         public string Image { get; set; }
      
     

@@ -16,7 +16,7 @@ html {
 
 body {
     margin-bottom: 60px;
-    background: linear-gradient(to right, #868f96 0%, #596164 100%);
+    background-image:url(../images/assets/background.jpg)
 }
 
 img {
