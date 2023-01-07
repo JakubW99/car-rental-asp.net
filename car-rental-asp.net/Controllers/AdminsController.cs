@@ -14,12 +14,15 @@ namespace car_rental_asp.net.Controllers
         {
             _adminService = adminService;
         }
+
         [HttpGet]
         public IEnumerable<Car> Get()
         {
             return _adminService.FindAll();
         }
-        [HttpGet("{id}",Name ="Get")]
+
+
+        [HttpGet("{id}", Name = "Get")]
         public ActionResult<Car> Get(int id)
         {
             return _adminService.FindBy(id);

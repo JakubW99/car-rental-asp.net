@@ -23,10 +23,12 @@ namespace car_rental_asp.net.Controllers
             return View();
 
         }
-        public IActionResult Post(int id)
+        public async Task<IActionResult> Post(int id)
         {
-
-            return View();
+            CarRental carRental = new CarRental();
+            var car = await dbContext.Cars.FindAsync(id);
+            carRental.Car = car;
+            return View(carRental);
         }
         [Authorize]
         [HttpPost]
@@ -47,7 +49,7 @@ namespace car_rental_asp.net.Controllers
             await dbContext.SaveChangesAsync();
 
 
-            return View();
+            return RedirectToAction("Index", "Cars");
         }
     }
 }

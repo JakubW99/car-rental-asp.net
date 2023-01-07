@@ -16,7 +16,7 @@ namespace car_rental_asp.net.Controllers
             _adminService = adminService;
 
         }
-        [Authorize(Roles ="ADMIN")]
+        
         public ActionResult Index()
         {
             return View(_adminService.FindAll());

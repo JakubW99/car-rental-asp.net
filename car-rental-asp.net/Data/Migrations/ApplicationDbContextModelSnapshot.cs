@@ -109,8 +109,9 @@ namespace car_rental_asp.net.Data.Migrations
                     b.Property<int>("CarRentalId")
                         .HasColumnType("int");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("RentalId");
 

@@ -81,5 +81,10 @@ namespace car_rental_asp.net.Models
         {
             return _context.Cars;
         }
+
+        public CarRental FindCarRental(int? id)
+        {
+            return id is null ? null : _context.CarRentals.Find(id);
+        }
     }
 }

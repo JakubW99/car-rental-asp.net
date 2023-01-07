@@ -1,4 +1,4 @@
-﻿@model IEnumerable<car_rental_asp.net.Models.UserRental>
+﻿@model IEnumerable<car_rental_asp.net.Models.CarRental>
 
 @{
     ViewData["Title"] = "Index";
@@ -22,13 +22,20 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.UserId)
+              
+               @foreach(var car in Model)
+                    {
+                        
+                         @Html.DisplayFor(modelItem => item.Car.Brand)
+                @Html.DisplayFor(modelItem => item.Car.Model)
+                @Html.DisplayFor(modelItem => item.Car.Specification)
+                @Html.DisplayFor(modelItem => item.Car.Id)
+                    }
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                @Html.DisplayFor(modelItem => item.EndDate)
+
             </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.RentalId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.RentalId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.RentalId">Delete</a>
-            </td>
+            
         </tr>
 }
     </tbody>

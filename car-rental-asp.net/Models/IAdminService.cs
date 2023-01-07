@@ -12,7 +12,7 @@ namespace car_rental_asp.net.Models
         public Car? FindBy(int? id);
         public bool ChangeStatus(Car car);
         public DbSet<Car> FindAll();
-
+        public CarRental FindCarRental(int? id);
 
     }
 }

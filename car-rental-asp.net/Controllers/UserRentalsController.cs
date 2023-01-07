@@ -1,32 +1,32 @@
 ﻿using car_rental_asp.net.Data;
 using car_rental_asp.net.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
+using System.Linq;
+using Microsoft.AspNetCore.Authorization;
+using System.Collections.Generic;
 
 namespace car_rental_asp.net.Controllers
 {
+
     public class UserRentalsController : Controller
     {
+
         public ApplicationDbContext dbContext { get; set; }
-        
+
+        public CarRental _carRental { get; set; }  
         public UserRentalsController(ApplicationDbContext context)
         {
-            
+
             dbContext = context;
         }
-        public IActionResult Index()
+        [Authorize]
+        public async Task<IActionResult> Index()
         {
           
-            UserRental userRental = new UserRental();
-            foreach(var item in dbContext.CarRentals)
-            {
-
-                userRental.Car = item.Car;
-                userRental.UserId = item.UserId;
-                dbContext.UserRentals.Add(userRental);
-            }
-            var currentUserRentals =dbContext.UserRentals.Where(x=> x.UserId == User.FindFirst(ClaimTypes.NameIdentifier).Value);
-            return View(currentUserRentals);
+        
+            return View(dbContext.CarRentals);
         }
     }
 }
