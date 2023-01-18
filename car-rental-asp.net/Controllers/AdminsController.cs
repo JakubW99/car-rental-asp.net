@@ -1,4 +1,5 @@
 ﻿using car_rental_asp.net.Models;
+using car_rental_asp.net.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -25,21 +26,22 @@ namespace car_rental_asp.net.Controllers
         [HttpGet("{id}", Name = "Get")]
         public ActionResult<Car> Get(int id)
         {
+            
             return _adminService.FindBy(id);
         }
-        [Authorize]
+        [Authorize(Roles="ADMIN")]
         [HttpPost]
-        public ActionResult Post([FromBody] Car car)
+        public async Task<ActionResult> Post([FromBody] CarViewModel model)
         {
-            _adminService.Save(car);
-                return Created("", car);
+             _adminService.Save(model);
+                return Created("", model);
         }
-        
+        [Authorize(Roles = "ADMIN")]
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] Car car)
+        public ActionResult Put(int id, [FromBody] CarViewModel model)
         {
-            car.Id = (int)id;
-            if (_adminService.Update(car))
+            model.Id = (int)id;
+            if (_adminService.Update(model))
             {
                 return BadRequest();
             }
@@ -48,7 +50,7 @@ namespace car_rental_asp.net.Controllers
                 return NoContent();
             }
         }
-        [Authorize]
+        [Authorize(Roles = "ADMIN")]
         // DELETE: api/Car/5
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)

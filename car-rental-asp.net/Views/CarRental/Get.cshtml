@@ -1,0 +1,38 @@
+﻿@model IEnumerable<car_rental_asp.net.Models.CarRental>
+
+@{
+    ViewData["Title"] = "Get";
+}
+
+<h1>Get</h1>
+<h4>Booked dates for this car</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </th>
+           
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+          <td>
+          
+        </tr>
+}
+
+    </tbody>
+</table>

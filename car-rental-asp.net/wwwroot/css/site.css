@@ -29,6 +29,10 @@ img {
     height: auto;
 
 }
+.img-rentals {
+    width: 250px;
+    height: auto;
+}
 .image {
     margin-top:0px;
     margin-bottom:0px;
@@ -63,7 +67,7 @@ td
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
-    width: auto;
+    width: 100px;
    
 }
 
@@ -136,4 +140,8 @@ td
 .center
 {
   align-self:center;
+}
+.container
+{
+    align-content:center;
 }

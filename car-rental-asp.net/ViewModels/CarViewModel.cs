@@ -1,9 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using car_rental_asp.net.Models;
 using Microsoft.AspNetCore.Http;
 namespace car_rental_asp.net.ViewModels
 {
     public class CarViewModel
     {
+        private IFormFile image;
 
         [Key]
         public int Id { get; set; }
@@ -28,8 +30,8 @@ namespace car_rental_asp.net.ViewModels
         [Required(ErrorMessage = "Please enter description")]
         public string Description { get; set; }
         [Required(ErrorMessage = "Please upload image")]
-        public IFormFile Image { get; set; }
-   
-   
+        public IFormFile Image { get => image; set => image = value; }
+
+
     }
 }

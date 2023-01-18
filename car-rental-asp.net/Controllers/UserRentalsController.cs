@@ -3,9 +3,7 @@ using car_rental_asp.net.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
-using System.Linq;
 using Microsoft.AspNetCore.Authorization;
-using System.Collections.Generic;
 
 namespace car_rental_asp.net.Controllers
 {
@@ -24,9 +22,17 @@ namespace car_rental_asp.net.Controllers
         [Authorize]
         public async Task<IActionResult> Index()
         {
-          
-        
-            return View(dbContext.CarRentals);
+            
+            var currentUser = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var cars = await dbContext.Cars.ToListAsync();
+            var carRentals = dbContext.CarRentals.Where(x => x.UserId == currentUser);
+            
+             
+            
+            await dbContext.SaveChangesAsync();
+            return View(carRentals);
         }
+
+        
     }
 }

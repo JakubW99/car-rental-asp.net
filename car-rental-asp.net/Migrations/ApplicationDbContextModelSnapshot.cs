@@ -8,7 +8,7 @@ using car_rental_asp.net.Data;
 
 #nullable disable
 
-namespace car_rental_asp.net.Data.Migrations
+namespace car_rental_asp.net.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -93,34 +93,10 @@ namespace car_rental_asp.net.Data.Migrations
                     b.HasIndex("CarId");
 
                     b.ToTable("CarRentals");
+
                 });
 
-            modelBuilder.Entity("car_rental_asp.net.Models.UserRental", b =>
-                {
-                    b.Property<int>("RentalId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RentalId"), 1L, 1);
-
-                    b.Property<int>("CarId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CarRentalId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("RentalId");
-
-                    b.HasIndex("CarId");
-
-                    b.HasIndex("CarRentalId");
-
-                    b.ToTable("UserRentals");
-                });
+          
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -327,32 +303,15 @@ namespace car_rental_asp.net.Data.Migrations
             modelBuilder.Entity("car_rental_asp.net.Models.CarRental", b =>
                 {
                     b.HasOne("car_rental_asp.net.Models.Car", "Car")
-                        .WithMany()
+                        .WithMany("CarRentals")
                         .HasForeignKey("CarId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Car");
                 });
 
-            modelBuilder.Entity("car_rental_asp.net.Models.UserRental", b =>
-                {
-                    b.HasOne("car_rental_asp.net.Models.Car", "Car")
-                        .WithMany()
-                        .HasForeignKey("CarId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("car_rental_asp.net.Models.CarRental", "CarRental")
-                        .WithMany()
-                        .HasForeignKey("CarRentalId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Car");
-
-                    b.Navigation("CarRental");
-                });
+          
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
@@ -403,6 +362,12 @@ namespace car_rental_asp.net.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("car_rental_asp.net.Models.Car", b =>
+                {
+                    b.Navigation("CarRentals");
+
                 });
 #pragma warning restore 612, 618
         }

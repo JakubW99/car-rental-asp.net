@@ -7,7 +7,7 @@
 <h1 class="display-4">Administration CRUD</h1>
 
 <p>
-    <a asp-controller="Cars" asp-action="Post" class="button-40"><i class="fas fa-plus-circle"></i> Add New</a>
+    <a asp-controller="Admin" asp-action="Create" class="button-40"><i class="fas fa-plus-circle"></i> Add New</a>
 </p>
 <table class="table table-borderless">
     <thead>
@@ -54,7 +54,7 @@
                     @Html.DisplayFor(modelItem => item.Amount)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.YearOfProduction)
+                    @Html.DisplayFor(modelItem => item.YearOfProduction.Year)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Description)

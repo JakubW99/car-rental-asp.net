@@ -13,6 +13,6 @@ namespace car_rental_asp.net.Data
         }
         public DbSet<Car> Cars { get; set; }
         public DbSet<CarRental> CarRentals { get; set; }
-      
+   
     }
 }
