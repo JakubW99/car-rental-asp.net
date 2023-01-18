@@ -1,0 +1,92 @@
+﻿@model car_rental_asp.net.ViewModels.CarViewModel
+  
+@{  
+    ViewData["Title"] = "Post";  
+}  
+  
+<div class="container">  
+    <div class="container">  
+        
+            <h4>Add New </h4>  
+        
+        <div class="container">  
+            <form enctype="multipart/form-data" asp-action="Create">  
+                <div class="row">  
+                    <div class="col-md-6">  
+                        <div class="form-group">  
+                            <label asp-for="Brand" class="control-label"></label>  
+                            <input asp-for="Brand" class="form-control" />  
+                            <span asp-validation-for="Brand" class="text-danger"></span>  
+                        </div>  
+                    </div>  
+                    <div class="col-md-6">  
+                        <div class="form-group">  
+                            <label asp-for="CarModel" class="control-label"></label>  
+                            <input asp-for="CarModel" class="form-control" />  
+                            <span asp-validation-for="CarModel" class="text-danger"></span>  
+                        </div>  
+                    </div>  
+                </div>  
+                <div class="row">  
+                    <div class="col-md-6">  
+                        <div class="form-group">  
+                           <label asp-for="Specification" class="control-label"></label>  
+                            <input asp-for="Specification" class="form-control" />  
+                            <span asp-validation-for="Specification" class="text-danger"></span>  
+                        </div>  
+                    </div>  
+                    <div class="col-md-6">  
+                        <div class="form-group">  
+                            <label asp-for="YearOfProduction" class="control-label"></label>  
+                            <input asp-for="YearOfProduction" class="form-control" />  
+                            <span asp-validation-for="YearOfProduction" class="text-danger"></span>  
+                        </div>  
+                    </div>  
+                </div>  
+                <div class="row">  
+                    <div class="col-md-6">  
+                        <div class="form-group">  
+                            <label asp-for="Description" class="control-label"></label>  
+                            <input asp-for="Description" class="form-control" />  
+                            <span asp-validation-for="Description" class="text-danger"></span>  
+                        </div>  
+                    </div>  
+                    <div class="row">  
+                    <div class="col-md-6">  
+                        <div class="form-group">  
+                            <label asp-for="Amount" class="control-label"></label>  
+                            <input asp-for="Amount" class="form-control" />  
+                            <span asp-validation-for="Amount" class="text-danger"></span>  
+                        </div>  
+                    </div>  
+                      </div>
+                    <div class="col-md-6">  
+                        <div class="form-group">  
+                            <label asp-for="Image" class="control-label"></label>  
+                            <div class="custom-file">  
+                                <input asp-for="Image" class="custom-file-input" id="customFile">  
+                                <label class="custom-file-label" for="customFile">Choose file</label>  
+                                 <span asp-validation-for="Image" class="text-danger"></span>  
+                            </div>  
+                           
+                        </div>  
+                    </div>  
+                </div>  
+                <div class="form-group">  
+                    <input type="submit" value="submit" class="btn btn-sm btn-primary rounded-0 text-uppercase" />  
+                    <a asp-action="Index" class="btn btn-sm btn-primary rounded-0 text-uppercase"><i class="fas fa-fast-backward"></i> Back to List</a>  
+                </div>  
+            </form>  
+        </div>  
+    </div>  
+</div>  
+  
+@section scripts{  
+    <script type="text/javascript">  
+        
+        $(".custom-file-input").on("change", function () {  
+            var fileName = $(this).val().split("\\").pop();  
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);  
+        });  
+    </script>  
+}  

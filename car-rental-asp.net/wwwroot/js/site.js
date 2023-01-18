@@ -1,4 +1,30 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+const form = document.querySelector('.rent-form');
+const priceField = document.querySelector('.total-price');
+const amountField = document.querySelector('.amount');
 
-// Write your JavaScript code.
+const dateToday = new Date();
+const dateTomorrow = new Date(dateToday);
+
+dateTomorrow.setDate(dateTomorrow.getDate() + 1)
+
+form.start.value = dateToday.toISOString().slice(0, 16);
+form.end.value = dateTomorrow.toISOString().slice(0, 16);
+
+updateTotalPrice();
+
+form.addEventListener('change', e => {
+    if (e.target.tagName === 'INPUT') {
+        updateTotalPrice();
+    }
+})
+
+
+function updateTotalPrice() {
+
+    const startDate = new Date(form.start.value);
+    const endDate = new Date(form.end.value);
+    const deltaDays = (endDate - startDate) / (1000 * 60 * 60 * 24);
+    const totalPrice = deltaDays * amountField.textContent;
+
+    deltaDays > 0 ? priceField.innerText = `Total price: ${totalPrice.toFixed(2)} PLN` : priceField.innerText = `Invalid end date`
+}

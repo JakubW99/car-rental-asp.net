@@ -5,9 +5,9 @@ namespace car_rental_asp.net.Models
 {
     public interface IAdminService
     {
-        public int Save(Car car);
+        public int Save(CarViewModel model);
         public bool Delete(int? id);
-        public bool Update(Car car);
+        public bool Update(CarViewModel model);
 
         public Car? FindBy(int? id);
         public bool ChangeStatus(Car car);

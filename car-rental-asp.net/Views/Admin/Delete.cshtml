@@ -51,7 +51,9 @@
             @Html.DisplayNameFor(model => model.Image)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Image)
+          <img src="~/images/@Model.Image"
+                     class="image"
+                     asp-append-version="true" />
         </dd>
     </dl>
     

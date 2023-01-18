@@ -4,39 +4,71 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Your rentals</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+<a class="button-40" asp-area="" asp-controller="Cars" asp-action="Index">New rent</a>
 </p>
-<table class="table">
+ <table class="table table-borderless">
     <thead>
+         
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.UserId)
+             <th>
+                @Html.DisplayNameFor(model => model.Amount)
             </th>
-            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+             <th>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Car.Brand)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Car.Model)
+            </th>
+            
+             <th>
+                @Html.DisplayNameFor(model => model.Car.Image)
+            </th>
+         
+            
+           
         </tr>
     </thead>
+    
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-              
-               @foreach(var car in Model)
-                    {
-                        
-                         @Html.DisplayFor(modelItem => item.Car.Brand)
-                @Html.DisplayFor(modelItem => item.Car.Model)
-                @Html.DisplayFor(modelItem => item.Car.Specification)
-                @Html.DisplayFor(modelItem => item.Car.Id)
-                    }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                 @Html.DisplayFor(modelItem => item.Amount) PLN
+                    </td>
+                    <td>
                     @Html.DisplayFor(modelItem => item.StartDate)
-                @Html.DisplayFor(modelItem => item.EndDate)
+                    </td>
+                    <td>
+                    @Html.DisplayFor(modelItem => item.EndDate)
+                   </td>
+                  <td>
+                    @Html.DisplayFor(modelItem => item.Car.Brand)
+                    </td>
+                    <td>
+                    @Html.DisplayFor(modelItem => item.Car.Model)
+                     </td>
+                     <td>
+                    <img src="~/images/@item.Car.Image"
+                     class="img-rentals"
+                     
+                     asp-append-version="true" />
+                     </td>
+                     
+                   
 
-            </td>
-            
-        </tr>
-}
+               
+
+            </tr>
+        }
     </tbody>
 </table>

@@ -1,13 +1,32 @@
-﻿namespace car_rental_asp.net.Models
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
+
+namespace car_rental_asp.net.Models
 {
-    public class CarRental
+    public class CarRental : IValidatableObject
     {
-        public int Id { get; set; } 
-        public Car Car { get; set; }
+        public int Id { get; set; }
+        [Required]
+        public  Car Car { get; set; }
+        [Required]
         public string UserId { get; set; }
+        [Required]
+        [DataType(DataType.DateTime)]
         public DateTime StartDate { get; set; }
+        [Required]
+        [DataType(DataType.DateTime)]
         public DateTime EndDate { get; set; }
+        [Required]
         public decimal Amount { get; set; }
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            if (EndDate <= StartDate)
+            {
+                yield return new ValidationResult(
+                    errorMessage: "EndDate must be greater than StartDate"
+               );
+            }
+        }
 
     }
 }

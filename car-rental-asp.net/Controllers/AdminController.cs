@@ -16,7 +16,7 @@ namespace car_rental_asp.net.Controllers
             _adminService = adminService;
 
         }
-        
+        [Authorize(Roles ="ADMIN")]
         public ActionResult Index()
         {
             return View(_adminService.FindAll());
@@ -27,40 +27,50 @@ namespace car_rental_asp.net.Controllers
         {
             return View();
         }
-
+        [Authorize(Roles = "ADMIN")]
         // POST: AdminController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Car car)
+        public async Task<ActionResult> Create(CarViewModel model)
         {
             if(ModelState.IsValid)
             {
-               _adminService.Save(car);
-                return RedirectToAction(nameof(Index));
+                _adminService.Save(model);
+                return RedirectToAction("index");
             }
-           return View(car);
+           return View("Index","Cars");
         }
-
+        [Authorize(Roles = "ADMIN")]
         // GET: AdminController/Edit/5
         public ActionResult Edit(int id)
         {
             var car = _adminService.FindBy(id);
-            return car is null ? NotFound() : View(car);
+            CarViewModel model = new CarViewModel();
+            model.Brand = car.Brand;
+            model.Amount = car.Amount;
+            model.CarModel = car.Model;
+            model.Id = id;
+            model.Description = car.Description;
+            model.Specification = car.Specification;
+            model.YearOfProduction = car.YearOfProduction;
+           
+            return car is null ? NotFound() : View(model);
         }
-
+       
+        [Authorize(Roles = "ADMIN")]
         // POST: AdminController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Car car)
+        public ActionResult Edit(int id, CarViewModel model)
         {
             if (ModelState.IsValid)
             {
-                _adminService.Update(car);
+                _adminService.Update(model);
                 return RedirectToAction(nameof(Index));
             }
-            return View(car);
+            return View();
         }
-
+        [Authorize(Roles = "ADMIN")]
         // GET: AdminController/Delete/5
         public ActionResult Delete(int id)
         {
@@ -69,7 +79,7 @@ namespace car_rental_asp.net.Controllers
                 return NotFound();
             }
             var car = _adminService.FindBy(id);
-            return car is null ? NotFound() : View();
+            return car is null ? NotFound() : View(car);
         }
 
         // POST: AdminController/Delete/5
