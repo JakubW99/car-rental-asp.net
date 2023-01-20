@@ -36,7 +36,15 @@
                 </br>
             </div>
         </form>
+
     </div>
+    <div class="col-md-4">
+        @foreach(var item in Model.Car.CarRentals)
+            {
+                @item.StartDate
+                @item.EndDate;
+            }
+        </div>
 </div>
 
 <div>
