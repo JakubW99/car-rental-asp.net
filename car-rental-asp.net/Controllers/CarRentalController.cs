@@ -29,7 +29,7 @@ namespace car_rental_asp.net.Controllers
             CarRental carRental = new CarRental();
             var car = await dbContext.Cars.FindAsync(id);
             carRental.Car = car;
-
+            car.CarRentals = await dbContext.CarRentals.Where(x => x.Car.Id == id).ToListAsync();
 
             return View(carRental);
         }
@@ -42,7 +42,7 @@ namespace car_rental_asp.net.Controllers
             var cars = await dbContext.Cars.ToListAsync();
             var thisCar = cars.Where(x => x.Id == id).FirstOrDefault();
             var allCarRentals = await dbContext.CarRentals.Where(x => x.Car.Id == id).ToListAsync();
-
+         
             CarRental c_Rental = new CarRental();
 
             c_Rental.UserId = currentUser;
@@ -50,6 +50,7 @@ namespace car_rental_asp.net.Controllers
             c_Rental.StartDate = carRental.StartDate;
             c_Rental.EndDate = carRental.EndDate;
             c_Rental.Amount = thisCar.Amount * Convert.ToDecimal((carRental.EndDate - carRental.StartDate).TotalDays);
+       
             if (carRental.StartDate >= carRental.EndDate || (carRental.EndDate-carRental.StartDate).TotalDays <1)
                 return RedirectToAction("Post", "CarRental");
             else

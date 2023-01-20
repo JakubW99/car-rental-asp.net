@@ -31,7 +31,7 @@ namespace car_rental_asp.net.Models
         [Required(ErrorMessage = "Please upload image")]
         [Display(Name = "Image")]
         public string Image { get; set; }
-     
+        public List<CarRental> CarRentals { get; set; }
         public Car()
         {
 
