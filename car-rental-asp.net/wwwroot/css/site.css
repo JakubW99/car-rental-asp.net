@@ -137,11 +137,26 @@ td
     margin-bottom:10px;
 }
 
-.center
-{
-  align-self:center;
+
+.tab {
+    width: 100%;
+    border: 1px solid $color-form-highlight;
 }
-.container
+
+.tab-header {
+    display: flex;
+    width: 100%;
+    background: #000;
+    padding: ($half-spacing-unit * 1.5) 0;
+}
+
+.tab-row {
+    display: flex;
+    width: 100%;
+    padding: ($half-spacing-unit * 1.5) 0;
+    &:nth-of-type(odd)
+
 {
-    align-content:center;
+    background: $color-form-highlight;
+}
 }
