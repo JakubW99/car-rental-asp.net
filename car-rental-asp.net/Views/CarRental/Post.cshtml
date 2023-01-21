@@ -5,7 +5,7 @@
 <h4>Rent this car</h4>
 <hr/>
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-4 mx-5">
         <h4>Car</h4>
         <form class="rent-form" asp-action="Post">
              <div class="form-group">@Model.Car.Brand</div>
@@ -40,11 +40,12 @@
 
     </div>
    
-    <div class="col-md-4">
+    <div class="col-md-6 mx-5">
         <h4>Booked dates for this car</h4>
          <table class="table">
              <thead class="table-dark">
             <tr class="text-uppercase">
+                <th>ID</th>
                 <th>@Html.DisplayNameFor(model => model.StartDate)</th>
                 <th>@Html.DisplayNameFor(model => model.EndDate)</th>
                 </tr>
@@ -53,6 +54,7 @@
         @foreach(var item in Model.Car.CarRentals)
             {
                 <tr>
+                <td>@item.Id</td>
                 <td>@item.StartDate</td>
                 <td>@item.EndDate</td>
                 </tr>
@@ -60,12 +62,12 @@
             </tbody>
            </table>
         </div>
-     
+     <div>
+    <a class="mx-5" asp-action="Index">Back to List</a>
+</div>
 </div>
 
-<div>
-    <a class="" asp-action="Index">Back to List</a>
-</div>
+
 </div>
 <script>
 
