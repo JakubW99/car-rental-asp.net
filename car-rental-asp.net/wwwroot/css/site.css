@@ -71,16 +71,6 @@ td
    
 }
 
-.button-40:hover {
-    background-color: #374151;
-}
-
-.button-40:focus {
-    box-shadow: none;
-    outline: 2px solid transparent;
-    outline-offset: 2px;
-}
-
 .button-41 {
     background-color: darkred;
     border: 1px solid transparent;
@@ -106,16 +96,7 @@ td
     width: auto;
 }
 
-    .button-40:hover {
-        background-color: #374151;
-    }
-
-    .button-40:focus {
-        box-shadow: none;
-        outline: 2px solid transparent;
-        outline-offset: 2px;
-    }
-
+ 
 @media (min-width: 768px) {
     .button-40 {
         padding: .75rem 1.5rem;

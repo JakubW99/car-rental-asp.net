@@ -16,6 +16,12 @@ namespace car_rental_asp.net.Controllers
             _adminService = adminService;
         }
 
+        [Route("{GetCarrentals}/{id}")]
+        [HttpGet("{id}", Name = "GetCarRentals")]
+        public IEnumerable<CarRental> GetCarRentals(int id)
+        {
+            return _adminService.GetCarRentals(id);
+        }
         [HttpGet]
         public IEnumerable<Car> Get()
         {
