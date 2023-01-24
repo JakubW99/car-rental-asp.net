@@ -65,7 +65,7 @@ namespace car_rental_asp.net.Controllers
                 dbContext.Add(c_Rental);
             await dbContext.SaveChangesAsync();
 
-            return RedirectToAction("Index", "Cars");
+            return RedirectToAction("Index", "UserRentals");
 
         }
         public async Task<IActionResult> Get(int id)

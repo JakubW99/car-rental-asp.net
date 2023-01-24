@@ -1,6 +1,7 @@
 ﻿@model car_rental_asp.net.Models.CarRental
 
 <div hidden class="amount">@Convert.ToDouble(Model.Car.Amount).ToString()</div>
+<div  hidden class="car-id">@Model.Car.Id</div>
 <div class="container">
 <h4>Rent this car</h4>
 <hr/>
@@ -33,7 +34,7 @@
         </div>
 
           <div class="form-group">
-                <input type="submit" value="Submit" class="button-40" />
+                <input type="submit" value="Submit" class="button-40 submit-btn" />
                 </br>
             </div>
         </form>
@@ -70,7 +71,6 @@
 
 </div>
 <script>
-
 </script>
 
 @section Scripts {

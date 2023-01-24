@@ -15,11 +15,7 @@ namespace car_rental_asp.net.Models
             webHostEnvironment = hostEnvironment;
         }
         
-        public bool ChangeStatus(Car car)
-        {
-            throw new NotImplementedException();
-        }
-
+      
         public bool Delete(int? id)
         {
             if (id is null)
@@ -112,7 +108,7 @@ namespace car_rental_asp.net.Models
             return id is null ? null : car; 
         }
 
-        public DbSet<Car> FindAll()
+        public IEnumerable<Car> FindAll()
         {
             return _context.Cars;
         }
@@ -121,6 +117,11 @@ namespace car_rental_asp.net.Models
         {
            
             return id is null ? null : _context.CarRentals.Find(id);
+        }
+
+        public IEnumerable<CarRental> GetCarRentals(int id)
+        {
+            return _context.CarRentals.Where(x=>x.Car.Id==id);
         }
     }
 }

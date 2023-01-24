@@ -10,8 +10,8 @@ namespace car_rental_asp.net.Models
         public bool Update(CarViewModel model);
 
         public Car? FindBy(int? id);
-        public bool ChangeStatus(Car car);
-        public DbSet<Car> FindAll();
+        public IEnumerable<CarRental> GetCarRentals(int id);
+        public IEnumerable<Car> FindAll();
         public CarRental FindCarRental(int? id);
 
     }
