@@ -69,6 +69,8 @@ td
     touch-action: manipulation;
     width: 100px;
    
+
+
 }
 
 .button-41 {
@@ -118,26 +120,3 @@ td
     margin-bottom:10px;
 }
 
-
-.tab {
-    width: 100%;
-    border: 1px solid $color-form-highlight;
-}
-
-.tab-header {
-    display: flex;
-    width: 100%;
-    background: #000;
-    padding: ($half-spacing-unit * 1.5) 0;
-}
-
-.tab-row {
-    display: flex;
-    width: 100%;
-    padding: ($half-spacing-unit * 1.5) 0;
-    &:nth-of-type(odd)
-
-{
-    background: $color-form-highlight;
-}
-}

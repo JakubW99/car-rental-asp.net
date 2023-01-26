@@ -11,29 +11,47 @@ namespace car_rental_asp.net.Controllers
     public class AdminsController : ControllerBase
     {
         private IAdminService _adminService;
+        private TestAdminService _testAdminService;
         public AdminsController(IAdminService adminService)
         {
             _adminService = adminService;
         }
-
-        [Route("{GetCarrentals}/{id}")]
+      
+        [Route("GetCarrentals/{id}")]
         [HttpGet("{id}", Name = "GetCarRentals")]
         public IEnumerable<CarRental> GetCarRentals(int id)
         {
             return _adminService.GetCarRentals(id);
         }
         [HttpGet]
-        public IEnumerable<Car> Get()
+        public async Task<ActionResult<IEnumerable<Car>?>> Get()
         {
-            return _adminService.FindAll();
+            if (_adminService is null)
+            {
+                return NotFound();
+            }
+            return new ActionResult<IEnumerable<Car?>>(_adminService.FindAll());
         }
 
 
+        [Route("Get/{id}")]
         [HttpGet("{id}", Name = "Get")]
-        public ActionResult<Car> Get(int id)
+        public async Task<ActionResult<Car?>> Get(int id)
         {
-            
-            return _adminService.FindBy(id);
+
+            if (_adminService == null)
+            {
+                return NotFound();
+            }
+
+            var car = _adminService.FindBy(id);
+
+            if (car == null)
+            {
+                return NotFound();
+            }
+
+            return car;
         }
         [Authorize(Roles="ADMIN")]
         [HttpPost]
@@ -59,7 +77,7 @@ namespace car_rental_asp.net.Controllers
         [Authorize(Roles = "ADMIN")]
         // DELETE: api/Car/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             var result = _adminService.Delete(id);
             if (result == null)

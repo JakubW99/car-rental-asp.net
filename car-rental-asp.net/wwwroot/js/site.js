@@ -1,7 +1,7 @@
 const form = document.querySelector('.rent-form');
 const priceField = document.querySelector('.total-price');
 const amountField = document.querySelector('.amount');
-const submitBtn = document.querySelector('.submit-btn');
+const submitBtn = document.querySelector('.submit');
 const carId = document.querySelector('.car-id').textContent;
 const apiUrl = `https://localhost:7276/api/admins/getcarrentals/${carId}`
 
@@ -28,7 +28,8 @@ function initForm(reservationList) {
         dateToday.setDate(dateToday.getDate() + 1)
         dateTomorrow.setDate(dateToday.getDate() + 1)
     }
-
+    dateToday.setTime(dateToday.getTime() - dateToday.getTimezoneOffset() * 60 * 1000);
+    dateTomorrow.setTime(dateTomorrow.getTime() - dateTomorrow.getTimezoneOffset() * 60 * 1000);
 
     form.start.value = dateToday.toISOString().slice(0, 16);
     form.end.value = dateTomorrow.toISOString().slice(0, 16);

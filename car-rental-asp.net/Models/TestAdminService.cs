@@ -1,99 +1,85 @@
-﻿//using car_rental_asp.net.ViewModels;
-//using Microsoft.AspNetCore.Hosting;
-//using Microsoft.EntityFrameworkCore;
+﻿using car_rental_asp.net.ViewModels;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 
-//namespace car_rental_asp.net.Models
-//{
-//    public class TestAdminService :IAdminService
-//    {
-//        private readonly Dictionary<int, CarViewModel?> repository = new Dictionary<int, CarViewModel?>();
-//        private readonly IWebHostEnvironment webHostEnvironment;
-//        private int counter = 1;
-//        private int UniqId()
-//        {
-//            return counter++;
-//        }
+namespace car_rental_asp.net.Models
+{
+    public class TestAdminService : IAdminService
+    {
+        private readonly Dictionary<int, Car?> repository = new Dictionary<int, Car?>();
 
-        
-//        public bool Delete(int? id)
-//        {
-//            if (id is null)
-//            {
-//                return false;
-//            }
-//            return repository.Remove(id ?? 1);
-//        }
+        private int counter = 1;
+        private int UniqId()
+        {
+            return counter++;
+        }
 
-//        //public Car? FindBy(int? id)
-//        //{
-//        //    if (id is null)
-//        //    {
-//        //        return null;
-//        //    }
-//        //    Car car = new Car();
-//        //    var model = repository.TryGetValue(id ?? 1, out car) ? car : null;
-          
-//        //    string uniqueFileName = UploadedFile(model);
-//        //    car.Brand = model.Brand;
-//        //    car.Model = model.Model;
-//        //    car.Id = model.Id;
-//        //    car.Image = uniqueFileName;
-//        //    car.YearOfProduction = model.YearOfProduction;
-//        //    car.Amount = model.Amount;
-//        //    car.Specification = model.Specification;
-//        //    car.Description = model.Description;
+        public Car? Save(Car? car)
+        {
+            car.Id = UniqId();
+            repository.Add(car.Id, car);
+            return car;
+        }
 
-//        //    return car;
-//        //}
-//        private string UploadedFile(CarViewModel model)
-//        {
-//            string uniqueFileName = null;
+        public async Task<Car> SaveAsync(Car car)
+        {
+            car.Id = UniqId();
+            repository.Add(car.Id, car);
+            return car;
+        }
 
-//            if (model.Image != null)
-//            {
-//                string uploadsFolder = Path.Combine(webHostEnvironment.WebRootPath, "images");
-//                uniqueFileName = Guid.NewGuid().ToString() + "_" + model.Image.FileName;
-//                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-//                using (var fileStream = new FileStream(filePath, FileMode.Create))
-//                {
-//                    model.Image.CopyTo(fileStream);
-//                }
-//            }
-//            return uniqueFileName;
-//        }
-//        public IEnumerable<Car?> FindAll()
-//        {
-//            return throw new NotImplementedException();
-//        }
+        public bool Delete(int? id)
+        {
+            if (id is null)
+            {
+                return false;
+            }
+            return repository.Remove(id ?? 1);
+        }
 
-//        public int Save(CarViewModel car)
-//        {
-//            car.Id = UniqId();
-//            repository.Add(car.Id, car);
-//            return 1;
-//        }
+        public bool Update(Car? car)
+        {
+            if (repository.ContainsKey(car.Id))
+            {
+                repository[car.Id] = car;
+                return true;
+            }
 
-//        public bool Update(CarViewModel car)
-//        {
-//            if (repository.ContainsKey(car.Id))
-//            {
-//                repository[car.Id] = car;
-//                return true;
-//            }
+            return false;
+        }
 
-//            return false;
-//        }
+        public Car? FindBy(int? id)
+        {
+            if (id is null)
+            {
+                return null;
+            }
+            return repository.TryGetValue(id ?? 1, out var car) ? car : null;
+        }
 
-//        public IEnumerable<CarRental> GetCarRentals(int id)
-//        {
-//            throw new NotImplementedException();
-//        }
+        public IEnumerable<Car?> FindAll()
+        {
+            return repository.Values;
+        }
 
-      
+        public int Save(CarViewModel model)
+        {
+            throw new NotImplementedException();
+        }
 
-//        public CarRental FindCarRental(int? id)
-//        {
-//            throw new NotImplementedException();
-//        }
-//    }
-//}
+        public bool Update(CarViewModel model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<CarRental> GetCarRentals(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public CarRental FindCarRental(int? id)
+        {
+            throw new NotImplementedException();
+        }
+    }
+}

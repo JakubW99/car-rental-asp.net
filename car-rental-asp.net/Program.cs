@@ -9,6 +9,7 @@ namespace car_rental_asp.net
     {
         public static void Main(string[] args)
         {
+            var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
@@ -24,9 +25,17 @@ namespace car_rental_asp.net
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddHttpContextAccessor();
             builder.Services.AddControllersWithViews();
-
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                                  policy =>
+                                  {
+                                      policy.WithOrigins("https://localhost:7276/");
+                                                    
+                                  });
+            });
             var app = builder.Build();
-
+            app.UseCors(MyAllowSpecificOrigins);
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
