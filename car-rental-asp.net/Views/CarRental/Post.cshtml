@@ -1,72 +1,74 @@
 ﻿@model car_rental_asp.net.Models.CarRental
 
 <div hidden class="amount">@Convert.ToDouble(Model.Car.Amount).ToString()</div>
-<div  hidden class="car-id">@Model.Car.Id</div>
+<div hidden class="car-id">@Model.Car.Id</div>
 <div class="container">
-<h4>Rent this car</h4>
-<hr/>
-<div class="row">
-    <div class="col-md-4 mx-5">
-        <h4>Car</h4>
-        <form class="rent-form" asp-action="Post">
-             <div class="form-group">@Model.Car.Brand</div>
-             <div class="form-group">@Model.Car.Model</div>
-             <div class="form-group">@Model.Car.Specification</div>
-             <div class="form-group">@Model.Car.Amount PLN/Day</div>
-             <div class="form-group">
-                <img src="~/images/@Model.Car.Image"
-                     class="image"
-                     asp-append-version="true" />
-            </div>
-           
-         <div class="form-group">
-                <label asp-for="StartDate"  class="control-label"></label>
-                <input asp-for="StartDate" id="start"  class="form-control" />
-                <span asp-validation-for="StartDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="EndDate"  class="control-label"></label>
-                <input asp-for="EndDate" id="end" class="form-control" />
-                <span asp-validation-for="EndDate" class="text-danger"></span>
-            </div>
-                 <div class="total-price">
-            <span>Total price: </span>            
+    <h4>Rent this car</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4 mx-5">
+            <h4>Car</h4>
+            <form class="rent-form" asp-action="Post">
+                <div class="form-group">@Model.Car.Brand</div>
+                <div class="form-group">@Model.Car.Model</div>
+                <div class="form-group">@Model.Car.Specification</div>
+                <div class="form-group">@Model.Car.Amount PLN/Day</div>
+                <div class="form-group">
+                    <img src="~/images/@Model.Car.Image"
+                         class="image"
+                         asp-append-version="true" />
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="StartDate" class="control-label"></label>
+                    <input type="datetime-local" asp-for="StartDate" id="start" class="form-control" />
+                    <span asp-validation-for="StartDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EndDate" class="control-label"></label>
+                    <input type="datetime-local" asp-for="EndDate" id="end" class="form-control" />
+                    <span asp-validation-for="EndDate" class="text-danger"></span>
+                </div>
+               
+                <div class="total-price">
+                    <span >Total price: </span>
+                </div>
+                
+                <div class="form-group">
+                    <input type="submit" value="Submit" class="btn btn-dark submit" />
+                    <a class="form-group btn btn-outline-danger" asp-action="Index">Back to List</a>
+                </div>
+               
+             
+            </form>
+
         </div>
 
-          <div class="form-group">
-                <input type="submit" value="Submit" class="button-40 submit-btn" />
-                </br>
-            </div>
-        </form>
-
-    </div>
-   
-    <div class="col-md-6 mx-5">
-        <h4>Booked dates for this car</h4>
-         <table class="table">
-             <thead class="table-dark">
-            <tr class="text-uppercase">
-                <th>ID</th>
-                <th>@Html.DisplayNameFor(model => model.StartDate)</th>
-                <th>@Html.DisplayNameFor(model => model.EndDate)</th>
-                </tr>
+        <div class="col-md-6 mx-5">
+            <h4>Booked dates for this car</h4>
+            <table class="table">
+                <thead class="table-dark">
+                    <tr class="text-uppercase">
+                        <th>ID</th>
+                        <th>@Html.DisplayNameFor(model => model.StartDate)</th>
+                        <th>@Html.DisplayNameFor(model => model.EndDate)</th>
+                    </tr>
                 </thead>
                 <tbody>
-        @foreach(var item in Model.Car.CarRentals)
-            {
-                <tr>
-                <td>@item.Id</td>
-                <td>@item.StartDate</td>
-                <td>@item.EndDate</td>
-                </tr>
-            }
-            </tbody>
-           </table>
+                    @foreach (var item in Model.Car.CarRentals)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.StartDate</td>
+                            <td>@item.EndDate</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+           
         </div>
-     <div>
-    <a class="mx-5" asp-action="Index">Back to List</a>
-</div>
-</div>
+        
+    </div>
 
 
 </div>

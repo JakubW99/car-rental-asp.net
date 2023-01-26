@@ -69,6 +69,8 @@ td
     touch-action: manipulation;
     width: 100px;
    
+
+
 }
 
 .button-41 {
@@ -118,11 +120,3 @@ td
     margin-bottom:10px;
 }
 
-.center
-{
-  align-self:center;
-}
-.container
-{
-    align-content:center;
-}
