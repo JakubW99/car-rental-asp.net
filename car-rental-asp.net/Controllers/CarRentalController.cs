@@ -28,6 +28,10 @@ namespace car_rental_asp.net.Controllers
         {
             CarRental carRental = new CarRental();
             var car = await dbContext.Cars.FindAsync(id);
+              if(car == null)
+            {
+                return NotFound();
+            }
             carRental.Car = car;
             car.CarRentals = await dbContext.CarRentals.Where(x => x.Car.Id == id).ToListAsync();
 
