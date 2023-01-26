@@ -56,7 +56,7 @@ namespace car_rental_asp.net.Controllers
             else
                 foreach (var rental in allCarRentals)
                 {
-                    if (carRental.StartDate.Date >= rental.StartDate.Date && carRental.EndDate.Date <= rental.EndDate.Date)
+                     if (!(carRental.StartDate.Date < rental.StartDate.Date || carRental.EndDate.Date > rental.EndDate.Date))
                     {
                         return RedirectToAction("Post", "CarRental");
                     }
