@@ -103,8 +103,9 @@ namespace car_rental_asp.net.Models
 
         public Car? FindBy(int? id)
         {
-            
-            return id is null ? null : _context.Cars.Find(id);
+            var car = _context.Cars.Find(id);
+        
+            return id is null ? null : car; 
         }
 
         public IEnumerable<Car> FindAll()
@@ -114,6 +115,7 @@ namespace car_rental_asp.net.Models
 
         public CarRental FindCarRental(int? id)
         {
+           
             return id is null ? null : _context.CarRentals.Find(id);
         }
 
