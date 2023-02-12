@@ -10,5 +10,4 @@
 # List of current user rentals
 ![alt text](https://github.com/JakubW99/car-rental-asp.net/blob/master/cars5.png?raw=true)
 
-# Contributors:
-@JakubW99
+
